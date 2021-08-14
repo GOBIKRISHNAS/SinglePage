@@ -240,22 +240,23 @@ $(function() {
 		ZOHO.CREATOR.API.getAllRecords(config).then(function(response) {
 			products = response.data
 			console.log(products);
+			if (products.length) {
+				products.forEach(function(item) {
+				  if (item.ID == index) {
+					// Populate '.preview-large' with the chosen product's data.
+					container.find("h3").text(item.Mobile_Name);
+					container.find("img").attr("src", "https://creatorapp.localzoho.com/"+item.Small_Image);
+					container.find("p").text(item.Description);
+				  }
+				});
+			  }
+		  
+			  // Show the page.
+			  page.addClass("visible");
 		});
 	  });
     // Find the wanted product by iterating the data object and searching for the chosen index.
-    if (data.length) {
-      data.forEach(function(item) {
-        if (item.ID == index) {
-          // Populate '.preview-large' with the chosen product's data.
-          container.find("h3").text(item.Mobile_Name);
-          container.find("img").attr("src", item.Small_Image);
-          container.find("p").text(item.Description);
-        }
-      });
-    }
-
-    // Show the page.
-    page.addClass("visible");
+    
   }
 
   // Find and render the filtered data results. Arguments are:
