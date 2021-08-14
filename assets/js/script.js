@@ -99,8 +99,9 @@ $(function() {
         pageSize: 10
       };
       ZOHO.CREATOR.API.getAllRecords(config).then(function(response) {
-		console.log(products);
+		
         products = response.data;
+		console.log(products);
 		generateAllProductsHTML(products);
 		$(window).trigger("hashchange");
       });
