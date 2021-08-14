@@ -93,7 +93,7 @@ $(function() {
 
     ZOHO.CREATOR.init().then(function(data) {
       config = {
-        reportName: "All_Widgets",
+        reportName: "Add_Mobile_Report",
         criteria: "",
         page: 1,
         pageSize: 10
