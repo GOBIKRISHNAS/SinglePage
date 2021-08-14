@@ -239,13 +239,12 @@ $(function() {
 		};
 		ZOHO.CREATOR.API.getAllRecords(config).then(function(response) {
 			products = response.data
-			console.log(products);
 			if (products.length) {
 				products.forEach(function(item) {
 				  if (item.ID == index) {
 					// Populate '.preview-large' with the chosen product's data.
 					container.find("h3").text(item.Mobile_Name);
-					container.find("img").attr("src", "https://creatorapp.localzoho.com/"+item.Small_Image);
+					container.find("img").attr("src", "https://creatorapp.localzoho.com/"+item.Large_Image);
 					container.find("p").text(item.Description);
 				  }
 				});
