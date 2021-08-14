@@ -204,7 +204,7 @@ $(function() {
       allProducts = $(".all-products .products-list > li");
 
     // Hide all the products in the products list.
-    allProducts.addClass("hidden");
+    allProducts.addClass("");
 
     // Iterate over all of the products.
     // If their ID is somewhere in the data object remove the hidden class to reveal them.
