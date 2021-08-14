@@ -2,7 +2,20 @@ $(function() {
   // Globals variables
 
   // 	An array containing objects with information about the products.
-  var products = [],
+  
+  var products = []
+  
+  ZOHO.CREATOR.init().then(function(data) {
+	config = {
+	  reportName: "Add_Mobile_Report",
+	  criteria: "",
+	  page: 1,
+	  pageSize: 10
+	};
+	ZOHO.CREATOR.API.getAllRecords(config).then(function(response) {
+	    products = response.data
+	});
+  });
     // Our filters object will contain an array of values for each filter
 
     // Example:
@@ -227,30 +240,18 @@ $(function() {
   function renderSingleProductPage(index, data) {
     var page = $(".single-product"),
       container = $(".preview-large");
-    
-	  ZOHO.CREATOR.init().then(function(data) {
-		config = {
-		  reportName: "Add_Mobile_Report",
-		  criteria: "",
-		  page: 1,
-		  pageSize: 10
-		};
-		ZOHO.CREATOR.API.getAllRecords(config).then(function(response) {
-		  data = response.data;
-		  if (data.length) {
-			data.forEach(function(item) {
-			  if (item.ID == index) {
-				// Populate '.preview-large' with the chosen product's data.
-				container.find("h3").text(item.Mobile_Name);
-				container.find("img").attr("src", "https://creatorapp.localzoho.com/"+item.Small_Image);
-				container.find("p").text(item.Description);
-			  }
-			});
-		  }
-		});
-	  });
+
     // Find the wanted product by iterating the data object and searching for the chosen index.
-    
+    if (data.length) {
+      data.forEach(function(item) {
+        if (item.ID == index) {
+          // Populate '.preview-large' with the chosen product's data.
+          container.find("h3").text(item.Mobile_Name);
+          container.find("img").attr("src", item.Small_Image);
+          container.find("p").text(item.Description);
+        }
+      });
+    }
 
     // Show the page.
     page.addClass("visible");
