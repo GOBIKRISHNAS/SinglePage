@@ -211,7 +211,7 @@ $(function() {
       var that = $(this);
 
       data.forEach(function(item) {
-        if (that.data("index") == item.id) {
+        if (that.data("index") == item.ID) {
           that.removeClass("hidden");
         }
       });
@@ -231,10 +231,10 @@ $(function() {
     // Find the wanted product by iterating the data object and searching for the chosen index.
     if (data.length) {
       data.forEach(function(item) {
-        if (item.Id == index) {
+        if (item.ID == index) {
           // Populate '.preview-large' with the chosen product's data.
           container.find("h3").text(item.Mobile_Name);
-          container.find("img").attr("src", "");
+          container.find("img").attr("src", item.Small_Image);
           container.find("p").text(item.Description);
         }
       });
