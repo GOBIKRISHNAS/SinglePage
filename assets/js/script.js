@@ -5,17 +5,6 @@ $(function() {
   
   var products = []
   
-  ZOHO.CREATOR.init().then(function(data) {
-	config = {
-	  reportName: "Add_Mobile_Report",
-	  criteria: "",
-	  page: 1,
-	  pageSize: 10
-	};
-	ZOHO.CREATOR.API.getAllRecords(config).then(function(response) {
-	    products = response.data
-	});
-  });
     // Our filters object will contain an array of values for each filter
 
     // Example:
@@ -240,7 +229,19 @@ $(function() {
   function renderSingleProductPage(index, data) {
     var page = $(".single-product"),
       container = $(".preview-large");
-
+    
+	  ZOHO.CREATOR.init().then(function(data) {
+		config = {
+		  reportName: "Add_Mobile_Report",
+		  criteria: "",
+		  page: 1,
+		  pageSize: 10
+		};
+		ZOHO.CREATOR.API.getAllRecords(config).then(function(response) {
+			products = response.data
+			console.log(products);
+		});
+	  });
     // Find the wanted product by iterating the data object and searching for the chosen index.
     if (data.length) {
       data.forEach(function(item) {
