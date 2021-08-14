@@ -242,7 +242,7 @@ $(function() {
 			  if (item.ID == index) {
 				// Populate '.preview-large' with the chosen product's data.
 				container.find("h3").text(item.Mobile_Name);
-				container.find("img").attr("src", item.Small_Image);
+				container.find("img").attr("src", "https://creatorapp.localzoho.com/"+item.Small_Image);
 				container.find("p").text(item.Description);
 			  }
 			});
